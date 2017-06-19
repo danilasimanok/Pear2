@@ -8,11 +8,27 @@
     tools:context="com.example.test.minigamespear.GallowsActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Menu"
+        android:layout_marginBottom="13dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp"/>
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="63dp"
+        android:text="there should be a picture of the gallows"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <GridView
+        android:id="@+id/gvMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </GridView>
+
 </RelativeLayout>
