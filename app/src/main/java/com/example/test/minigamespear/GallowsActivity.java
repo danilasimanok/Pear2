@@ -5,21 +5,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 public class GallowsActivity extends AppCompatActivity {
 
     private final String tag="tagGallows";
-    String[] data = {"А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й",
-                     "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф",
-                     "Х", "Ц", "Ч", "Ш", "Щ", "Ъ", "Ы", "Ь", "Э", "Ю", "Я"};
+    private final String word="ВИСЕЛИЦА";
+    String[] data = {"Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х",
+                     "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э",
+                     "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", "Ъ", "Ё"};
+    boolean[] statusarr=new boolean[word.length()];
     GridView gvMain;
+    String letter=new String();
     ArrayAdapter<String> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(tag, "created");
         setContentView(R.layout.activity_gallows);
@@ -34,19 +39,39 @@ public class GallowsActivity extends AppCompatActivity {
         };
         button2.setOnClickListener(listener2);
 
+        TextView textView = (TextView) findViewById(R.id.textViewWord);
+        String vspom = new String();
+        for (int i = 0; i < word.length(); i++) {
+            vspom += "_";
+        }
+        textView.setText(vspom);
+
         adapter = new ArrayAdapter<String>(this, R.layout.item, R.id.tvText, data);
         gvMain = (GridView) findViewById(R.id.gvMain);
         gvMain.setAdapter(adapter);
         adjustGridView();
-        GridView gridView = (GridView) findViewById(R.id.gvMain);
-        View.OnClickListener listener1 = new View.OnClickListener() {
+
+        gvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                GridView gridView = (GridView) findViewById(R.id.gvMain);
-                gridView.setVisibility(View.INVISIBLE);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                view.setVisibility(View.INVISIBLE);
+                letter = data[position];
+                Log.d(tag, letter);
+                if (word.contains(letter)) {
+                    TextView textView = (TextView) findViewById(R.id.textViewWord);
+                    String vspom = new String();
+                    for (int i = 0; i < word.length(); i++)
+                        if (word.substring(i, i + 1).equals(letter))
+                            statusarr[i] = true;
+                    for (int i=0; i<word.length(); i++)
+                        if (statusarr[i])
+                            vspom+= word.substring(i, i + 1);
+                        else
+                            vspom+= "_";
+                    textView.setText(vspom);
+                }
             }
-        };
-        gridView.setOnClickListener(listener1);
+        });
     }
 
     private void adjustGridView() {
@@ -57,7 +82,6 @@ public class GallowsActivity extends AppCompatActivity {
         gvMain.setStretchMode(GridView.STRETCH_SPACING_UNIFORM);
     }
 
-    //setOnItemClickListener
 
 
 
