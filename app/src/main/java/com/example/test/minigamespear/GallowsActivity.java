@@ -11,21 +11,34 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.Random;
+import java.util.Scanner;
 
 public class GallowsActivity extends AppCompatActivity {
 
-    private final String word=wordChoose();
-    private int lifes=8;
+    private String word;
+    private int lifes = 8;
 
-    private final String tag="tagGallows";
+    private static final String tag = "tagGallows";
     String[] data = {"Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х",
-                     "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э",
-                     "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", "Ъ", "Ё"};
-    boolean[] statusarr=new boolean[word.length()];
+            "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э",
+            "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", "Ъ", "Ё"};
+    boolean[] statusarr;
     GridView gvMain;
-    String letter=new String();
+    String letter = new String();
     ArrayAdapter<String> adapter;
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -43,14 +56,21 @@ public class GallowsActivity extends AppCompatActivity {
         };
         button2.setOnClickListener(listener2);
 
+        try {
+            word = wordChoose();
+            statusarr = new boolean[word.length()];
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         final TextView textView = (TextView) findViewById(R.id.textViewWord);
-        String vspom = new String();
+        String vspom = "";
         for (int i = 0; i < word.length(); i++) {
             vspom += "_ ";
         }
         textView.setText(vspom);
-        final TextView textView1= (TextView) findViewById(R.id.textViewLifes);
-        textView1.setText(lifes+ " lifes");
+        final TextView textView1 = (TextView) findViewById(R.id.textViewLifes);
+        textView1.setText(lifes + " lifes");
 
 
         adapter = new ArrayAdapter<String>(this, R.layout.item, R.id.tvText, data);
@@ -70,31 +90,30 @@ public class GallowsActivity extends AppCompatActivity {
                     for (int i = 0; i < word.length(); i++)
                         if (word.substring(i, i + 1).equals(letter))
                             statusarr[i] = true;
-                    for (int i=0; i<word.length(); i++)
+                    for (int i = 0; i < word.length(); i++)
                         if (statusarr[i])
-                            vspom+= word.substring(i, i + 1)+" ";
+                            vspom += word.substring(i, i + 1) + " ";
                         else
-                            vspom+= "_ ";
+                            vspom += "_ ";
                     textView.setText(vspom);
-                }
-                else{
+                } else {
                     lifes--;
-                    textView1.setText(lifes+ " lifes");
+                    textView1.setText(lifes + " lifes");
                 }
-                boolean uslovie=true;
-                for (boolean vspom1: statusarr)
+                boolean uslovie = true;
+                for (boolean vspom1 : statusarr)
                     if (uslovie)
-                        uslovie=vspom1;
+                        uslovie = vspom1;
                 if (uslovie) {
                     textView1.setText("Вы выиграли!");
                     gvMain.setVisibility(View.INVISIBLE);
                 }
-                if (lifes==0){
+                if (lifes == 0) {
                     textView1.setText("Вы проиграли!");
                     gvMain.setVisibility(View.INVISIBLE);
-                    String word1=new String();
-                    for (int i=0; i<word.length(); i++)
-                        word1+=word.substring(i,i+1)+" ";
+                    String word1 = new String();
+                    for (int i = 0; i < word.length(); i++)
+                        word1 += word.substring(i, i + 1) + " ";
 
                     textView.setText(word1);
                 }
@@ -110,17 +129,29 @@ public class GallowsActivity extends AppCompatActivity {
         gvMain.setStretchMode(GridView.STRETCH_SPACING_UNIFORM);
     }
 
-    private static String wordChoose(){
+    private String wordChoose() throws IOException {
         Random rnd = new Random(System.currentTimeMillis());
-        int min=1;
-        int max=3;
+        int min = 1;
+        int max = 3;
         int number = min + rnd.nextInt(max - min + 1);
-        return "ВУВУЗЕЛА";
+        String result = "";
+        InputStream inputstream = getResources().openRawResource(R.raw.dictionary);
+
+        Reader inputStreamReader = new InputStreamReader(inputstream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        String line = bufferedReader.readLine();
+        result += line;
+        while (line != null) {
+            line = bufferedReader.readLine();
+            if (line != null) {
+                result += line;
+            }
+        }
+        // закрываем поток
+        inputstream.close();
+        Log.d(tag, result);
+        return result;
     }
-
-
-
-
 
 
     @Override
