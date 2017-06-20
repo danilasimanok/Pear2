@@ -11,10 +11,14 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class GallowsActivity extends AppCompatActivity {
 
+    private final String word=wordChoose();
+    private int lifes=8;
+
     private final String tag="tagGallows";
-    private final String word="ВИСЕЛИЦА";
     String[] data = {"Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х",
                      "Ф", "Ы", "В", "А", "П", "Р", "О", "Л", "Д", "Ж", "Э",
                      "Я", "Ч", "С", "М", "И", "Т", "Ь", "Б", "Ю", "Ъ", "Ё"};
@@ -39,12 +43,15 @@ public class GallowsActivity extends AppCompatActivity {
         };
         button2.setOnClickListener(listener2);
 
-        TextView textView = (TextView) findViewById(R.id.textViewWord);
+        final TextView textView = (TextView) findViewById(R.id.textViewWord);
         String vspom = new String();
         for (int i = 0; i < word.length(); i++) {
-            vspom += "_";
+            vspom += "_ ";
         }
         textView.setText(vspom);
+        final TextView textView1= (TextView) findViewById(R.id.textViewLifes);
+        textView1.setText(lifes+ " lifes");
+
 
         adapter = new ArrayAdapter<String>(this, R.layout.item, R.id.tvText, data);
         gvMain = (GridView) findViewById(R.id.gvMain);
@@ -65,10 +72,31 @@ public class GallowsActivity extends AppCompatActivity {
                             statusarr[i] = true;
                     for (int i=0; i<word.length(); i++)
                         if (statusarr[i])
-                            vspom+= word.substring(i, i + 1);
+                            vspom+= word.substring(i, i + 1)+" ";
                         else
-                            vspom+= "_";
+                            vspom+= "_ ";
                     textView.setText(vspom);
+                }
+                else{
+                    lifes--;
+                    textView1.setText(lifes+ " lifes");
+                }
+                boolean uslovie=true;
+                for (boolean vspom1: statusarr)
+                    if (uslovie)
+                        uslovie=vspom1;
+                if (uslovie) {
+                    textView1.setText("Вы выиграли!");
+                    gvMain.setVisibility(View.INVISIBLE);
+                }
+                if (lifes==0){
+                    textView1.setText("Вы проиграли!");
+                    gvMain.setVisibility(View.INVISIBLE);
+                    String word1=new String();
+                    for (int i=0; i<word.length(); i++)
+                        word1+=word.substring(i,i+1)+" ";
+
+                    textView.setText(word1);
                 }
             }
         });
@@ -80,6 +108,14 @@ public class GallowsActivity extends AppCompatActivity {
         gvMain.setVerticalSpacing(5);
         gvMain.setHorizontalSpacing(5);
         gvMain.setStretchMode(GridView.STRETCH_SPACING_UNIFORM);
+    }
+
+    private static String wordChoose(){
+        Random rnd = new Random(System.currentTimeMillis());
+        int min=1;
+        int max=3;
+        int number = min + rnd.nextInt(max - min + 1);
+        return "ВУВУЗЕЛА";
     }
 
 

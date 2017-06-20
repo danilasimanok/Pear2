@@ -17,42 +17,44 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="ВИСЕЛИЦА"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="36sp"
+        android:layout_alignTop="@+id/relativeLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textViewLifes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:text="there should be a picture of the gallows"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp"
+        android:text="44 lifes"
+        android:textSize="36sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="225dp">
+        android:layout_marginTop="225dp"
+        android:id="@+id/relativeLayout">
 
         <GridView
             android:id="@+id/gvMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="122dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="40dp"></GridView>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"></GridView>
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/textViewWord"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="113dp"
-        android:text="ВИСЕЛИЦА"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="36sp" />
 
 </RelativeLayout>
