@@ -55,6 +55,4 @@
         android:src="@mipmap/logo"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
-
 </RelativeLayout>

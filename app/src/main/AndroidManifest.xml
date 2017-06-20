@@ -15,9 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EvActivity"></activity>
-        <activity android:name=".DSLWactivity"></activity>
-        <activity android:name=".GallowsActivity"></activity>
+        <activity android:name=".EvolvingActivity" />
+        <activity android:name=".DSLWactivity" />
+        <activity android:name=".GallowsActivity" />
     </application>
 
 </manifest>
