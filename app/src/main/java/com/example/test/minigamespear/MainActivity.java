@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, GallowsActivity.class);
-                //intent.putExtra(data_id,0);
+                //intent.putExtra(data_id,0);dfshdfgh
                 startActivity(intent);
             }
         };
