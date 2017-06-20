@@ -11,28 +11,31 @@ import android.util.Log;
 public class Player extends Creature {
     public static int size=1;
     public static double x=8,y=4.5;
-    public Player() {
+    private static int limit=10;
+    static double plV;
+    public Player(double v) {
         this.points=0;
         this.paint=new Paint();
         paint.setColor(0xff00ff00);
         this.r=1;
-        this.vx=0;
-        this.vy=0;
+        this.plV=v;
+        this.sin=0;
+        this.cos=0;
+        this.v=0;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        float x=PNCOBATEJIb.xToP(this.x),
-                y=PNCOBATEJIb.yToP(this.y),
-                r=PNCOBATEJIb.rToP(this.r);
-        canvas.drawCircle(x,y,r,paint);
-        Log.d("player's points",this.points+"");
+        canvas.drawCircle(PNCOBATEJIb.xToP(8),PNCOBATEJIb.yToP(4.5),PNCOBATEJIb.rToP(r),paint);
+        Log.d("player","points="+this.points+" size="+Player.size);
     }
 
     @Override
     public void move(Player p) {
-        this.x+=this.vx;
-        this.y+=this.vy;
+        Player.x+=this.v*this.cos;
+        Player.y+=this.v*this.sin;
+        if(this.v>0)this.v-=EvolvingView.mu;
+        else this.v=0;
     }
 
     public void suffer() {
@@ -43,6 +46,21 @@ public class Player extends Creature {
 
     public void eat(Enemy enemy) {
         this.points+=enemy.points;
-        enemy.isAlive=false;
+        this.updateSize();
+    }
+
+    private void updateSize() {
+        if(this.points>=this.limit){
+            this.points-=this.limit;
+            this.size++;
+            this.limit=2*this.limit;
+        }
+    }
+
+    void changeDir(double x,double y){
+        double a=y-4.5,b=x-8,c=Math.sqrt(a*a+b*b);
+        this.v=this.plV;
+        this.sin=a/c;
+        this.cos=b/c;
     }
 }
