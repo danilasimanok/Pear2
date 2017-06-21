@@ -15,8 +15,8 @@ public class EvolvingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evolving);
 
-        Button eYC =(Button)findViewById(R.id.button);
-        eYC.setOnClickListener(new View.OnClickListener() {
+        Button playButton =(Button)findViewById(R.id.button556);
+        playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(EvolvingActivity.this, StatisticMenuActivity.class);

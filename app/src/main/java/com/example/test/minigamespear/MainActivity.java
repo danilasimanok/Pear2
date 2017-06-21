@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         eYC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, EvolvingActivity.class);
+                Intent intent = new Intent(MainActivity.this, EYCmenu.class);
                 startActivity(intent);
             }
         });

@@ -19,6 +19,7 @@
         <activity android:name=".DSLWactivity" />
         <activity android:name=".GallowsActivity" />
         <activity android:name=".StatisticMenuActivity"></activity>
+        <activity android:name=".EYCmenu"></activity>
     </application>
 
 </manifest>
