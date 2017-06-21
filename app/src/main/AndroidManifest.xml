@@ -15,7 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EvolvingActivity"></activity>
+        <activity android:name=".EvolvingActivity" />
+        <activity android:name=".DSLWactivity" />
+        <activity android:name=".GallowsActivity" />
+        <activity android:name=".StatisticMenuActivity"></activity>
     </application>
 
 </manifest>
