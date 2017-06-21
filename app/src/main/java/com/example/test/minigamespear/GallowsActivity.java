@@ -1,6 +1,7 @@
 package com.example.test.minigamespear;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -30,7 +32,7 @@ public class GallowsActivity extends AppCompatActivity {
     private String word;
     private int numberword;
     private String theme;
-    private int lifes = 8;
+    private int lifes = 7;
 
     private static final String tag = "tagGallows";
     String[] data = {"Й", "Ц", "У", "К", "Е", "Н", "Г", "Ш", "Щ", "З", "Х",
@@ -74,13 +76,8 @@ public class GallowsActivity extends AppCompatActivity {
             vspom += "_ ";
         }
         textView.setText(vspom);
-        final TextView textView1 = (TextView) findViewById(R.id.textViewLifes);
-        if (lifes%10==1 && lifes!=11)
-            textView1.setText("Осталась " +lifes+" жизнь");
-        if (lifes%10>=2 && lifes%10<=4 && (lifes<10 || lifes>20))
-            textView1.setText("Осталось "+lifes+" жизни");
-        if ((lifes%10>=5 || lifes%10==0) || (lifes>=10 || lifes<=20))
-            textView1.setText("Осталось "+lifes+" жизней");
+        //final ImageView imageView=(ImageView) findViewById(R.id.imageView3);
+        //imageView.setVisibility(View.INVISIBLE);
 
 
 
@@ -109,12 +106,23 @@ public class GallowsActivity extends AppCompatActivity {
                     textView.setText(vspom);
                 } else {
                     lifes--;
-                    if (lifes%10==1 && lifes!=11)
-                        textView1.setText("Осталась " +lifes+" жизнь");
-                    if (lifes%10>=2 && lifes%10<=4 && (lifes<10 || lifes>20))
-                        textView1.setText("Осталось "+lifes+" жизни");
-                    if ((lifes%10>=5 || lifes%10==0) || (lifes>=10 && lifes<=20))
-                        textView1.setText("Осталось "+lifes+" жизней");
+                    final ImageView imageView=(ImageView) findViewById(R.id.imageView3);
+                    if (lifes==6)
+                        imageView.setImageResource(R.drawable.i2);
+                    if (lifes==5)
+                        imageView.setImageResource(R.drawable.i3);
+                    if (lifes==4)
+                        imageView.setImageResource(R.drawable.i4);
+                    if (lifes==3)
+                        imageView.setImageResource(R.drawable.i5);
+                    if (lifes==2)
+                        imageView.setImageResource(R.drawable.i6);
+                    if (lifes==1)
+                        imageView.setImageResource(R.drawable.i7);
+                    if (lifes==0)
+                        imageView.setImageResource(R.drawable.i8);
+
+
                 }
                 boolean uslovie = true;
                 for (boolean vspom1 : statusarr)

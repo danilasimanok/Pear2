@@ -17,16 +17,6 @@
         android:layout_centerHorizontal="true" />
 
 
-    <TextView
-        android:id="@+id/textViewLifes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="91dp"
-        android:text="44 lifes"
-        android:textSize="36sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <me.grantland.widget.AutofitTextView
         android:id="@+id/textViewWord"
         android:layout_width="match_parent"
@@ -69,6 +59,15 @@
         android:text="Тема: Религиоведение"
         android:textSize="30sp"
         android:layout_above="@+id/textViewWord"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="12dp"
+        app:srcCompat="@drawable/i1"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
