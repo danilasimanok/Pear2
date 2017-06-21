@@ -24,5 +24,15 @@ public class EYCmenu extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        Button BackTomainMenuButton =(Button)findViewById(R.id.backToMainMenuButton);
+        BackTomainMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EYCmenu.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

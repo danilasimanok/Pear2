@@ -23,5 +23,15 @@ public class EvolvingActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button BackToMenuButton =(Button)findViewById(R.id.backToMenuButton);
+        BackToMenuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EvolvingActivity.this, EYCmenu.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }
