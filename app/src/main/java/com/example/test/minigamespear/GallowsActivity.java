@@ -130,27 +130,26 @@ public class GallowsActivity extends AppCompatActivity {
     }
 
     private String wordChoose() throws IOException {
-        Random rnd = new Random(System.currentTimeMillis());
-        int min = 1;
-        int max = 3;
-        int number = min + rnd.nextInt(max - min + 1);
+        Random rnd = new Random();
         String result = "";
         InputStream inputstream = getResources().openRawResource(R.raw.dictionary);
-
         Reader inputStreamReader = new InputStreamReader(inputstream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         String line = bufferedReader.readLine();
-        result += line;
+        result += line+" ";
         while (line != null) {
             line = bufferedReader.readLine();
             if (line != null) {
-                result += line;
+                result += line+" ";
             }
         }
-        // закрываем поток
         inputstream.close();
+        result=result.substring(1);
+        String[] sarr=result.split(" ");
+        int number = rnd.nextInt(sarr.length);
         Log.d(tag, result);
-        return result;
+        Log.d(tag, sarr[number]);
+        return sarr[number];
     }
 
 
