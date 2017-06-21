@@ -28,10 +28,12 @@ public class Enemy extends Creature {
     @Override
     public void draw(Canvas canvas) {
         this.r=1+(this.size-Player.size)*0.2;
-        float x=PNCOBATEJIb.xToP(this.x-getPlayerXOffest(Player.x)),
-                y=PNCOBATEJIb.yToP(this.y-getPlayerYOffest(Player.y)),
-                r=PNCOBATEJIb.rToP(this.r);
+        float x=C_PNCOBATEJIb.xToP(this.x-Player.x),
+                y=C_PNCOBATEJIb.yToP(this.y-Player.y),
+                r=C_PNCOBATEJIb.rToP(this.r);
         canvas.drawCircle(x,y,r,this.paint);
+        Log.d("enemy",x+" "+y+" "+r);
+        Log.d("enemy",this.x+" "+this.y+" "+this.r);
     }
 
     @Override
@@ -46,11 +48,5 @@ public class Enemy extends Creature {
     }
     private double getR(double x,double y){
         return Math.sqrt((this.x-x)*(this.x-x)+(this.y-y)*(this.y-y));
-    }
-    private double getPlayerXOffest(double x){
-        return x-8;
-    }
-    private double getPlayerYOffest(double y){
-        return y-4.5;
     }
 }

@@ -60,7 +60,7 @@ public class EvolvingView extends View {
         super.onDraw(canvas);
         //настройка рисователя
         if(PNCOBATEJIb_is_not_settled){
-            PNCOBATEJIb.newPNCOBATEJIb(getWidth(),getHeight());
+            C_PNCOBATEJIb.newC_PNCOBATEJIb(getWidth(),getHeight());
             PNCOBATEJIb_is_not_settled=false;
         }
         //создание новых врагов
@@ -100,12 +100,20 @@ public class EvolvingView extends View {
             double x,y;
             for(int i=player.size-3;i<player.size+3;i++){
                 if(i>=0){
-                    Log.d("spawn iter",""+i);
+                    /*Log.d("spawn iter",""+i);
                     do{
                         x=Math.random()*32-8;
                         y=Math.random()*13.5-4.5;
                         Log.d("spawn tried",x+" "+y);
-                    }while ((x>=0&&x<=16)||(y>=0&&y<=9));
+                    }while ((x>=0&&x<=16)||(y>=0&&y<=9));*/
+                    do{
+                        x=Math.random()*32-16;
+                    }while (x<=8&&x>=-8);
+                    x=x+player.x;
+                    do{
+                        y=Math.random()*18-9;
+                    }while (y<=4.5&&y>=-4.5);
+                    y=y+player.y;
                     Enemy enemy=new Enemy(points[i],x,y,player.x,player.y,v[i],i+1);
                     creatures.add(enemy);
                 }
@@ -116,14 +124,14 @@ public class EvolvingView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
+        double x=C_PNCOBATEJIb.pToX(event.getX()),
+                y=C_PNCOBATEJIb.pToY(event.getY());
+        player.changeDir(x,y);
+        for(int i=0;i<60;i++)createEnem();
         if(f) {
-            double x=PNCOBATEJIb.pToX(event.getX()),y=PNCOBATEJIb.pToY(event.getY());
-            player.changeDir(x,y);
             f=false;
         }else{
-            double x=PNCOBATEJIb.pToX(event.getX()),y=PNCOBATEJIb.pToY(event.getY());
-            player.changeDir(x,y);
-            player.size=10;
+            player.size=4;
         }
         return super.onTouchEvent(event);
     }

@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Evolving menu"
-        android:id="@+id/tomenuev"/>
+        android:id="@+id/button"/>
     <com.example.test.minigamespear.EvolvingView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/tomenuev"/>
+        android:layout_above="@id/button"/>
 </RelativeLayout>
