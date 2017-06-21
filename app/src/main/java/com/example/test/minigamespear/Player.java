@@ -10,7 +10,7 @@ import android.util.Log;
 
 public class Player extends Creature {
     public static int size=1;
-    public static double x=8,y=4.5;
+    public static double x=0,y=0;
     private static int limit=10;
     static double plV;
     public Player(double v) {
@@ -26,7 +26,7 @@ public class Player extends Creature {
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawCircle(PNCOBATEJIb.xToP(8),PNCOBATEJIb.yToP(4.5),PNCOBATEJIb.rToP(r),paint);
+        canvas.drawCircle(C_PNCOBATEJIb.xToP(0),C_PNCOBATEJIb.yToP(0),C_PNCOBATEJIb.rToP(r),paint);
         Log.d("player","points="+this.points+" size="+Player.size);
     }
 
