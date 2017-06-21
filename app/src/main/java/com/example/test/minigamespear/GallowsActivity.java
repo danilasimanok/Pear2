@@ -28,6 +28,8 @@ import java.util.Scanner;
 public class GallowsActivity extends AppCompatActivity {
 
     private String word;
+    private int numberword;
+    private String theme;
     private int lifes = 8;
 
     private static final String tag = "tagGallows";
@@ -58,10 +60,13 @@ public class GallowsActivity extends AppCompatActivity {
 
         try {
             word = wordChoose();
+            theme = themeChoose(numberword);
             statusarr = new boolean[word.length()];
         } catch (IOException e) {
             e.printStackTrace();
         }
+        final TextView textView3 = (TextView) findViewById(R.id.textViewTheme);
+        textView3.setText("Тема: "+theme);
 
         final TextView textView = (TextView) findViewById(R.id.textViewWord);
         String vspom = "";
@@ -70,7 +75,13 @@ public class GallowsActivity extends AppCompatActivity {
         }
         textView.setText(vspom);
         final TextView textView1 = (TextView) findViewById(R.id.textViewLifes);
-        textView1.setText(lifes + " lifes");
+        if (lifes%10==1 && lifes!=11)
+            textView1.setText("Осталась " +lifes+" жизнь");
+        if (lifes%10>=2 && lifes%10<=4 && (lifes<10 || lifes>20))
+            textView1.setText("Осталось "+lifes+" жизни");
+        if ((lifes%10>=5 || lifes%10==0) || (lifes>=10 || lifes<=20))
+            textView1.setText("Осталось "+lifes+" жизней");
+
 
 
         adapter = new ArrayAdapter<String>(this, R.layout.item, R.id.tvText, data);
@@ -83,7 +94,7 @@ public class GallowsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 view.setVisibility(View.INVISIBLE);
                 letter = data[position];
-                Log.d(tag, letter);
+                //Log.d(tag, letter);
                 if (word.contains(letter)) {
                     TextView textView = (TextView) findViewById(R.id.textViewWord);
                     String vspom = new String();
@@ -98,18 +109,23 @@ public class GallowsActivity extends AppCompatActivity {
                     textView.setText(vspom);
                 } else {
                     lifes--;
-                    textView1.setText(lifes + " lifes");
+                    if (lifes%10==1 && lifes!=11)
+                        textView1.setText("Осталась " +lifes+" жизнь");
+                    if (lifes%10>=2 && lifes%10<=4 && (lifes<10 || lifes>20))
+                        textView1.setText("Осталось "+lifes+" жизни");
+                    if ((lifes%10>=5 || lifes%10==0) || (lifes>=10 && lifes<=20))
+                        textView1.setText("Осталось "+lifes+" жизней");
                 }
                 boolean uslovie = true;
                 for (boolean vspom1 : statusarr)
                     if (uslovie)
                         uslovie = vspom1;
                 if (uslovie) {
-                    textView1.setText("Вы выиграли!");
+                    textView3.setText("Вы выиграли!");
                     gvMain.setVisibility(View.INVISIBLE);
                 }
                 if (lifes == 0) {
-                    textView1.setText("Вы проиграли!");
+                    textView3.setText("Вы проиграли!");
                     gvMain.setVisibility(View.INVISIBLE);
                     String word1 = new String();
                     for (int i = 0; i < word.length(); i++)
@@ -129,6 +145,25 @@ public class GallowsActivity extends AppCompatActivity {
         gvMain.setStretchMode(GridView.STRETCH_SPACING_UNIFORM);
     }
 
+    private String themeChoose(int number) throws IOException {
+        String result = "";
+        InputStream inputstream = getResources().openRawResource(R.raw.themes);
+        Reader inputStreamReader = new InputStreamReader(inputstream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        String line = bufferedReader.readLine();
+        result += line+" ";
+        while (line != null) {
+            line = bufferedReader.readLine();
+            if (line != null) {
+                result += line+" ";
+            }
+        }
+        inputstream.close();
+        result=result.substring(1);
+        String[] sarr=result.split(" ");
+        Log.d(tag, sarr[number]);
+        return sarr[number];
+    }
     private String wordChoose() throws IOException {
         Random rnd = new Random();
         String result = "";
@@ -147,10 +182,14 @@ public class GallowsActivity extends AppCompatActivity {
         result=result.substring(1);
         String[] sarr=result.split(" ");
         int number = rnd.nextInt(sarr.length);
-        Log.d(tag, result);
+        //Log.d(tag, result);
         Log.d(tag, sarr[number]);
+        numberword=number;
         return sarr[number];
     }
+
+
+
 
 
     @Override
