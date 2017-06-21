@@ -169,6 +169,7 @@ public class GallowsActivity extends AppCompatActivity {
         inputstream.close();
         result=result.substring(1);
         String[] sarr=result.split(" ");
+        //Log.d(tag,result);
         Log.d(tag, sarr[number]);
         return sarr[number];
     }
