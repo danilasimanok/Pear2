@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_ground">
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Points"
+        android:textColor="#D3D0D6"
+        android:textSize="25sp"
+        style="@style/HabraThemeButton"
+        android:id="@+id/button556"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/continue_button"
+        android:layout_alignStart="@+id/continue_button" />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:id="@+id/backToMenuButton"
+        android:text="Back to menu"
+        android:textColor="#D3D0D6"
+        android:textSize="25sp"
+        style="@style/HabraThemeButton"
+        android:layout_marginTop="83dp"
+        android:layout_below="@+id/button556"
+        android:layout_alignLeft="@+id/button556"
+        android:layout_alignStart="@+id/button556" />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="128dp"
+        style="@style/HabraThemeButton"
+        android:text="Continue"
+        android:textSize="25sp"
+        android:textColor="#D3D0D6"
+        android:id="@+id/continue_button"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

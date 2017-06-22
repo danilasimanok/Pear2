@@ -15,11 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EvolvingActivity" />
+        <activity android:name=".EvolvingActivity"
+            android:screenOrientation="landscape"/>
         <activity android:name=".DSLWactivity" />
         <activity android:name=".GallowsActivity" />
         <activity android:name=".StatisticMenuActivity"></activity>
         <activity android:name=".EYCmenu"></activity>
+        <activity android:name=".PauseActivity"></activity>
     </application>
-
+hui
 </manifest>

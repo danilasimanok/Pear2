@@ -15,22 +15,12 @@ public class EvolvingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evolving);
 
-        Button playButton =(Button)findViewById(R.id.button556);
-        playButton.setOnClickListener(new View.OnClickListener() {
+        Button pauseButton =(Button)findViewById(R.id.pause_button);
+        pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EvolvingActivity.this, StatisticMenuActivity.class);
+                Intent intent = new Intent(EvolvingActivity.this, PauseActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        Button BackToMenuButton =(Button)findViewById(R.id.backToMenuButton);
-        BackToMenuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EvolvingActivity.this, EYCmenu.class);
-                startActivity(intent);
-                finish();
             }
         });
     }
