@@ -31,7 +31,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="330dp"
-        android:text="Aliace"
+        android:text="DSLW"
         android:textColor="#D3D0D6"
         android:textSize="13pt" />
 
