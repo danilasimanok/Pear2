@@ -1,5 +1,5 @@
 package com.example.test.minigamespear;
-
+// test
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
