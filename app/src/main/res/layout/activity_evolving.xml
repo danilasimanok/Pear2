@@ -21,5 +21,6 @@
         android:id="@+id/pause_button"/>
     <com.example.test.minigamespear.EvolvingView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/evolvingView"/>
 </RelativeLayout>

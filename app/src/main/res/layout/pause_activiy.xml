@@ -11,7 +11,7 @@
         android:textColor="#D3D0D6"
         android:textSize="25sp"
         style="@style/HabraThemeButton"
-        android:id="@+id/button556"
+        android:id="@+id/point_button"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/continue_button"
         android:layout_alignStart="@+id/continue_button" />
@@ -23,20 +23,20 @@
         android:textColor="#D3D0D6"
         android:textSize="25sp"
         style="@style/HabraThemeButton"
-        android:layout_marginTop="83dp"
-        android:layout_below="@+id/button556"
-        android:layout_alignLeft="@+id/button556"
-        android:layout_alignStart="@+id/button556" />
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/point_button"
+        android:layout_alignLeft="@+id/point_button"
+        android:layout_alignStart="@+id/point_button" />
     <Button
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="128dp"
         style="@style/HabraThemeButton"
         android:text="Continue"
         android:textSize="25sp"
         android:textColor="#D3D0D6"
         android:id="@+id/continue_button"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/point_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>

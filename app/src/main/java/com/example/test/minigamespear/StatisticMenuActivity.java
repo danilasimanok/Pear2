@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * Created by user on 6/21/17.
@@ -15,14 +16,9 @@ public class StatisticMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistic_menu_for_eyc);
-
-        Button eYC =(Button)findViewById(R.id.button1);
-        eYC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Button button= (Button) v;
-                button.setText("Your size="+Player.size);
-            }
-        });
+        TextView textView=(TextView)findViewById(R.id.editText);
+        int[]stats=EvolvingView.player.getStats();
+        String s="Your size="+stats[0]+"\n"+"Your points "+stats[1]+"/"+stats[2];
+        textView.setText(s);
     }
 }

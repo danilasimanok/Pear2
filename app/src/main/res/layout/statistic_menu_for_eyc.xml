@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="@drawable/back_ground"
     xmlns:android="http://schemas.android.com/apk/res/android" >
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:id="@+id/button1"/>
+        android:id="@+id/editText"
+        android:text=""
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="#CFD9F9"/>
 </RelativeLayout>
