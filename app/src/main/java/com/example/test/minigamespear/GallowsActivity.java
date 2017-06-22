@@ -1,7 +1,7 @@
 package com.example.test.minigamespear;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,21 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.Random;
-import java.util.Scanner;
 
 public class GallowsActivity extends AppCompatActivity {
 
@@ -49,17 +42,29 @@ public class GallowsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(tag, "created");
         setContentView(R.layout.activity_gallows);
-        Button button2 = (Button) findViewById(R.id.buttonMenu);
+        RelativeLayout relativelayout=(RelativeLayout) findViewById(R.id.mainrl);
+        relativelayout.setBackgroundColor(Color.WHITE);
+        Button buttonMenu = (Button) findViewById(R.id.buttonMenu);
         View.OnClickListener listener2 = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GallowsActivity.this, MainActivity.class);
-                //intent.putExtra(data_id,0);
+                finish();
                 startActivity(intent);
             }
         };
-        button2.setOnClickListener(listener2);
-
+        buttonMenu.setOnClickListener(listener2);
+        final Button buttonRestart = (Button) findViewById(R.id.buttonRestart);
+        buttonRestart.setVisibility(View.INVISIBLE);
+        View.OnClickListener listener3 = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GallowsActivity.this, GallowsActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        };
+        buttonRestart.setOnClickListener(listener3);
         try {
             word = wordChoose();
             theme = themeChoose(numberword);
@@ -67,15 +72,15 @@ public class GallowsActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        final TextView textView3 = (TextView) findViewById(R.id.textViewTheme);
-        textView3.setText("Тема: "+theme);
+        final TextView textViewTheme = (TextView) findViewById(R.id.textViewTheme);
+        textViewTheme.setText("Тема: "+theme);
 
-        final TextView textView = (TextView) findViewById(R.id.textViewWord);
+        final TextView textViewWord = (TextView) findViewById(R.id.textViewWord);
         String vspom = "";
         for (int i = 0; i < word.length(); i++) {
             vspom += "_ ";
         }
-        textView.setText(vspom);
+        textViewWord.setText(vspom);
         //final ImageView imageView=(ImageView) findViewById(R.id.imageView3);
         //imageView.setVisibility(View.INVISIBLE);
 
@@ -93,7 +98,7 @@ public class GallowsActivity extends AppCompatActivity {
                 letter = data[position];
                 //Log.d(tag, letter);
                 if (word.contains(letter)) {
-                    TextView textView = (TextView) findViewById(R.id.textViewWord);
+                    TextView textViewWord = (TextView) findViewById(R.id.textViewWord);
                     String vspom = new String();
                     for (int i = 0; i < word.length(); i++)
                         if (word.substring(i, i + 1).equals(letter))
@@ -103,24 +108,24 @@ public class GallowsActivity extends AppCompatActivity {
                             vspom += word.substring(i, i + 1) + " ";
                         else
                             vspom += "_ ";
-                    textView.setText(vspom);
+                    textViewWord.setText(vspom);
                 } else {
                     lifes--;
-                    final ImageView imageView=(ImageView) findViewById(R.id.imageView3);
+                    final ImageView imageView3=(ImageView) findViewById(R.id.imageView3);
                     if (lifes==6)
-                        imageView.setImageResource(R.drawable.i2);
+                        imageView3.setImageResource(R.drawable.i2);
                     if (lifes==5)
-                        imageView.setImageResource(R.drawable.i3);
+                        imageView3.setImageResource(R.drawable.i3);
                     if (lifes==4)
-                        imageView.setImageResource(R.drawable.i4);
+                        imageView3.setImageResource(R.drawable.i4);
                     if (lifes==3)
-                        imageView.setImageResource(R.drawable.i5);
+                        imageView3.setImageResource(R.drawable.i5);
                     if (lifes==2)
-                        imageView.setImageResource(R.drawable.i6);
+                        imageView3.setImageResource(R.drawable.i6);
                     if (lifes==1)
-                        imageView.setImageResource(R.drawable.i7);
+                        imageView3.setImageResource(R.drawable.i7);
                     if (lifes==0)
-                        imageView.setImageResource(R.drawable.i8);
+                        imageView3.setImageResource(R.drawable.i8);
 
 
                 }
@@ -129,17 +134,18 @@ public class GallowsActivity extends AppCompatActivity {
                     if (uslovie)
                         uslovie = vspom1;
                 if (uslovie) {
-                    textView3.setText("Вы выиграли!");
+                    textViewTheme.setText("Вы выиграли!");
                     gvMain.setVisibility(View.INVISIBLE);
+                    buttonRestart.setVisibility(View.VISIBLE);
                 }
                 if (lifes == 0) {
-                    textView3.setText("Вы проиграли!");
+                    textViewTheme.setText("Вы проиграли!");
                     gvMain.setVisibility(View.INVISIBLE);
                     String word1 = new String();
                     for (int i = 0; i < word.length(); i++)
                         word1 += word.substring(i, i + 1) + " ";
-
-                    textView.setText(word1);
+                    buttonRestart.setVisibility(View.VISIBLE);
+                    textViewWord.setText(word1);
                 }
             }
         });
