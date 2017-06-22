@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="160dp"
-        android:text="Нажмите, чтобы начать"
+        android:text="Нажмите OK, чтобы начать"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@android:color/background_light"
         android:textSize="24sp" />
@@ -24,13 +24,13 @@
         android:id="@+id/DSLW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="35dp"
         android:text="OK"
         tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="432dp" />
+        tools:layout_editor_absoluteY="432dp"
+        android:layout_above="@+id/menu"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Chronometer
         android:id="@+id/chrono"
@@ -43,5 +43,14 @@
         android:layout_marginTop="20dp"
         android:textColor="@android:color/background_light"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="MENU" />
 
 </RelativeLayout>
