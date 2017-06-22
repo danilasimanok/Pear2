@@ -41,10 +41,15 @@ public class Player extends Creature {
 
     @Override
     public void move(Player p) {
-        Player.x+=this.v*this.cos;
-        Player.y+=this.v*this.sin;
-        if(this.v>0)this.v-=EvolvingView.mu;
-        else this.v=0;
+        double newx=Player.x+this.v*this.cos,
+                newy=Player.y+this.v*this.sin;
+        if((Background.R-Math.abs(newx)<=8)||(Background.R-Math.abs(newy)<=4.5))this.v=0;
+        else {
+            Player.x=newx;
+            Player.y=newy;
+            if(this.v>0)this.v-=EvolvingView.mu;
+            else this.v=0;
+        }
     }
 
     public void suffer() {
@@ -71,5 +76,9 @@ public class Player extends Creature {
         this.v=this.plV;
         this.sin=a/c;
         this.cos=b/c;
+    }
+
+    public int[] getStats(){
+        return new int[]{this.size,this.points,this.limit};
     }
 }

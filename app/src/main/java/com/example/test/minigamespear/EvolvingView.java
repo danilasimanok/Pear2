@@ -16,10 +16,11 @@ import java.util.Random;
  * Created by Андрей on 19.06.2017.
  */
 
-public class EvolvingView extends View {
+public class EvolvingView extends View implements MyEventsCreator {
     LinkedList<Enemy>creatures;
     LinkedList<Enemy>delCreatures;
-    Player player;
+    LinkedList<MyEventsListener>listeners;
+    static Player player;
     private boolean PNCOBATEJIb_is_not_settled=true;
     private boolean f=true;
     public static final double mu=0.0005/3;
@@ -28,6 +29,9 @@ public class EvolvingView extends View {
     private int[]points;
     private final double V=0.002;
     private Bitmap[]bitmaps;
+
+    private Background background;
+    private Bitmap backBitmap;
 
     public EvolvingView(Context context) {
         this(context,null,0);
@@ -58,9 +62,12 @@ public class EvolvingView extends View {
                 BitmapFactory.decodeResource(getResources(),R.drawable.kl5),
                 BitmapFactory.decodeResource(getResources(),R.drawable.kl6),
         };
+        backBitmap=BitmapFactory.decodeResource(getResources(),R.drawable.back_ground);
+        background=new Background(backBitmap,0,0);
         player=new Player(0.05,chooseBitmap());
         creatures=new LinkedList<>();
         delCreatures=new LinkedList<>();
+        listeners=new LinkedList<>();
         points=new int[50];
         points[0]=1;
         for(int i=2;i<points.length;i++){
@@ -95,9 +102,16 @@ public class EvolvingView extends View {
         for(Enemy enemy:delCreatures)creatures.remove(enemy);
         delCreatures.clear();
         //рисование всех
+        background.draw(canvas);
         player.draw(canvas);
         for (Creature creature:creatures)creature.draw(canvas);
+        //проверяем, кончилась ли игра
+        if(gameEnded())makeEvent("Player won!");
         invalidate();
+    }
+
+    private boolean gameEnded() {
+        return player.size==50;
     }
 
     private void checkCreaturesSize() {
@@ -117,7 +131,7 @@ public class EvolvingView extends View {
             t=0;
             double x,y;
             for(int i=player.size-3;i<player.size+3;i++){
-                if(i>=0){
+                if((i>=0)&&(i<points.length)){
                     /*Log.d("spawn iter",""+i);
                     do{
                         x=Math.random()*32-8;
@@ -152,5 +166,20 @@ public class EvolvingView extends View {
             player.size=4;
         }*/
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public void makeEvent(String myEventMessage) {
+        for(MyEventsListener listener:listeners)listener.update(myEventMessage);
+    }
+
+    @Override
+    public void addListener(MyEventsListener listener) {
+        listeners.add(listener);
+    }
+
+    @Override
+    public void removeListener(MyEventsListener listener) {
+        listeners.remove(listener);
     }
 }
