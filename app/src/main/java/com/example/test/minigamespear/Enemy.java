@@ -1,7 +1,10 @@
 package com.example.test.minigamespear;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.util.Log;
 
 /**
@@ -11,7 +14,7 @@ import android.util.Log;
 public class Enemy extends Creature {
     public boolean isAlive;
 
-    public Enemy(int points, double x, double y, double x1, double y1, double v, int size) {
+    public Enemy(int points, double x, double y, double x1, double y1, double v, int size, Bitmap bitmap) {
         this.points = points;
         this.isAlive = true;
         this.x=x;
@@ -21,18 +24,22 @@ public class Enemy extends Creature {
         this.cos=x1-x;
         this.size=size;
         this.paint=new Paint();
-        paint.setColor(0xffff0000);
+        int color=(int)(0xffffff*Math.random());
+        paint.setColor(0xff000000+color);
+        this.bitmap=bitmap;
         Log.d("spawn enemy","The enemy was added (size="+this.size+").");
     }
 
     @Override
     public void draw(Canvas canvas) {
         this.r=1+(this.size-Player.size)*0.2;
-        float x=C_PNCOBATEJIb.xToP(this.x-Player.x),
-                y=C_PNCOBATEJIb.yToP(this.y-Player.y),
-                r=C_PNCOBATEJIb.rToP(this.r);
-        canvas.drawCircle(x,y,r,this.paint);
-        Log.d("enemy",x+" "+y+" "+r);
+        double x=this.x-Player.x,y=this.y-Player.y;
+        float l=C_PNCOBATEJIb.xToP(x-this.r),
+                t=C_PNCOBATEJIb.yToP(y+this.r),
+                r=C_PNCOBATEJIb.xToP(x+this.r),
+                b=C_PNCOBATEJIb.yToP(y-this.r);
+        RectF dst=new RectF(l,t,r,b);
+        canvas.drawBitmap(this.bitmap,null,dst,this.paint);
         Log.d("enemy",this.x+" "+this.y+" "+this.r);
     }
 
