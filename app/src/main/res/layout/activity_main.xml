@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="277dp"
-        android:text="Evolution"
+        android:text="Эволюция"
         android:textColor="#D3D0D6"
         android:textSize="13pt" />
 
@@ -31,7 +31,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="330dp"
-        android:text="DSLW"
+        android:text="Шляпа"
         android:textColor="#D3D0D6"
         android:textSize="13pt" />
 
@@ -43,7 +43,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="383dp"
-        android:text="Gallows"
+        android:text="Виселица"
         android:textColor="#D3D0D6"
         android:textSize="13pt" />
 

@@ -8,44 +8,32 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="219dp"
-        android:text="PLAY"
+        android:text="Играть"
         android:textSize="25sp"
         android:id="@+id/button55"
+        style="@style/HabraThemeButton"
+        android:textColor="#D3D0D6"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        style="@style/HabraThemeButton"
-        android:textColor="#D3D0D6"/>
+        android:layout_marginTop="243dp" />
     <Button
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="13dp"
-        android:text="Main character"
-        android:textSize="25sp"
-        android:layout_below="@+id/button55"
-        android:layout_alignLeft="@+id/button55"
-        android:layout_alignStart="@+id/button55"
-        android:id="@+id/button2"
-        style="@style/HabraThemeButton"
-        android:textColor="#D3D0D6"/>
-    <Button
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="58dp"
         android:id="@+id/backToMainMenuButton"
-        android:text="Back to menu"
+        android:text="Назад в меню"
         android:textColor="#D3D0D6"
         android:textSize="25sp"
         style="@style/HabraThemeButton"
-        android:layout_below="@+id/button2"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2" />
+        android:layout_below="@+id/button55"
+        android:layout_alignLeft="@+id/button55"
+        android:layout_alignStart="@+id/button55" />
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@mipmap/eyc_logo"
-        android:layout_marginBottom="69dp"
-        android:layout_above="@+id/button2"
+        android:layout_marginBottom="89dp"
+        android:layout_alignBottom="@+id/button55"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
 

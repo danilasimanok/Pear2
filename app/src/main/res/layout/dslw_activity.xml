@@ -48,7 +48,7 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MENU"
+        android:text="Назад в меню"
         android:textColor="#D3D0D6"
         android:textSize="25sp"
         style="@style/HabraThemeButton"

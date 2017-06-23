@@ -15,7 +15,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="13dp"
-        android:text="Menu" />
+        android:text="Назад в меню" />
 
 
     <me.grantland.widget.AutofitTextView
@@ -78,7 +78,7 @@
         android:layout_alignTop="@+id/relativeLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="57dp"
-        android:text="Restart"
+        android:text="Следующее слово"
         android:textSize="30sp" />
 
 </RelativeLayout>

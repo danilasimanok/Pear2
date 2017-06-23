@@ -33,7 +33,7 @@ public class EvolvingActivity extends AppCompatActivity implements MyEventsListe
     }
     @Override
     public void update(String myEventMessage){
-            AlertDialog.Builder builder = new AlertDialog.Builder(EvolvingActivity.this);
+            /*AlertDialog.Builder builder = new AlertDialog.Builder(EvolvingActivity.this);
             builder.setTitle("You win!")
                     .setMessage("Congratulations!")
                     .setIcon(R.mipmap.crab)
@@ -45,7 +45,7 @@ public class EvolvingActivity extends AppCompatActivity implements MyEventsListe
                                 }
                             });
             AlertDialog alert = builder.create();
-            alert.show();
+            alert.show();*/
         finish();
     }
 }

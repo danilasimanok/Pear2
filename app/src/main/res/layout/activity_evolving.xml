@@ -15,7 +15,7 @@
         style="@style/HabraThemeButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="PAUSE"
+        android:text="Пауза"
         android:textSize="25sp"
         android:textColor="#D3D0D6"
         android:id="@+id/pause_button"/>

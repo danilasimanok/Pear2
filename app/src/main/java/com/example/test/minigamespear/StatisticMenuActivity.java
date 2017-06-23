@@ -18,7 +18,7 @@ public class StatisticMenuActivity extends AppCompatActivity {
         setContentView(R.layout.statistic_menu_for_eyc);
         TextView textView=(TextView)findViewById(R.id.editText);
         int[]stats=EvolvingView.player.getStats();
-        String s="Your size="+stats[0]+"\n"+"Your points "+stats[1]+"/"+stats[2];
+        String s="Мой размер="+stats[0]+"\n"+"Мои очки "+stats[1]+"/"+stats[2];
         textView.setText(s);
     }
 }
